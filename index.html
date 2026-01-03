@@ -1,802 +1,106 @@
-n<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Étude notariale — Tremblay et Barriault</title>
-<meta name="description" content="Étude notariale de Maître Dupont. Droit immobilier, droit de la famille, successions et conseil patrimonial.">
+<title>Vérification de sécurité</title>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <style>
-:root {
-    --bleu-profond: #1a2332;
-    --bleu-nuit: #0f1821;
-    --or-elegant: #d4af37;
-    --or-clair: #e8c76a;
-    --gris-clair: #f8f9fa;
-    --gris-moyen: #e9ecef;
-    --texte: #2c3e50;
-    --texte-clair: #6c757d;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff;
-    color: var(--texte);
-    line-height: 1.7;
-}
-
-/* Navigation fixe */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(15, 24, 33, 0.98);
-    backdrop-filter: blur(10px);
-    padding: 16px 0;
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-}
-
-nav .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-}
-
-nav .logo {
-    color: var(--or-elegant);
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-nav .nav-links {
-    display: flex;
-    gap: 35px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    transition: color 0.3s;
-    font-weight: 500;
-}
-
-nav a:hover {
-    color: var(--or-elegant);
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    transition: 0.3s;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--bleu-nuit) 0%, var(--bleu-profond) 100%);
-    color: #fff;
-    padding: 180px 30px 120px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin-top: 60px;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23d4af37" opacity="0.05"/></svg>');
-    opacity: 0.1;
-}
-
-.hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: 56px;
-    margin-bottom: 15px;
-    font-weight: 700;
-    letter-spacing: -1px;
-}
-
-.hero .subtitle {
-    font-size: 24px;
-    color: var(--or-clair);
-    margin-bottom: 25px;
-    font-weight: 300;
-}
-
-.hero p {
-    font-size: 18px;
-    opacity: 0.9;
-    max-width: 700px;
-    margin: 0 auto 35px;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 16px 40px;
-    background: var(--or-elegant);
-    color: var(--bleu-nuit);
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 50px;
-    font-size: 16px;
-    transition: all 0.3s;
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 30px;
-}
-
-.section {
-    margin-bottom: 80px;
-}
-
-h2 {
-    font-size: 42px;
-    color: var(--bleu-profond);
-    margin-bottom: 15px;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 80px;
-    height: 4px;
-    background: var(--or-elegant);
-}
-
-.section-intro {
-    font-size: 18px;
-    color: var(--texte-clair);
-    margin-bottom: 50px;
-    max-width: 800px;
-}
-
-/* Section Maître */
-.maitre-section {
-    background: var(--gris-clair);
-    padding: 80px 30px;
     margin: 0;
-}
-
-.maitre-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 60px;
-    align-items: start;
-}
-
-.maitre-photo {
-    position: relative;
-}
-
-.photo-frame {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: #e9ecef;
-    border-radius: 12px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-    position: relative;
-    overflow: hidden;
-    border: 5px solid var(--or-elegant);
-}
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.photo-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--bleu-profond), var(--bleu-nuit));
+    height: 100vh;
+    background: #f6f7f8;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--or-elegant);
-    font-size: 80px;
-    font-weight: 700;
-    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
 }
 
-.photo-placeholder::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1), transparent);
-}
-
-.maitre-info h2 {
-    margin-top: 0;
-}
-
-.credentials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.badge {
-    background: var(--or-elegant);
-    color: var(--bleu-nuit);
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.maitre-bio {
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-    margin-top: 30px;
-}
-
-.maitre-bio h3 {
-    color: var(--bleu-profond);
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.maitre-bio p {
-    margin-bottom: 15px;
-    line-height: 1.8;
-}
-
-.expertise-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.expertise-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-}
-
-.expertise-item::before {
-    content: '✓';
-    color: var(--or-elegant);
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/* Grid Cards */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
 }
 
 .card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    transition: all 0.3s;
-    border: 1px solid var(--gris-moyen);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
-}
-
-.card-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--or-elegant), var(--or-clair));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.card h3 {
-    font-size: 22px;
-    color: var(--bleu-profond);
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: var(--texte-clair);
-    line-height: 1.7;
-}
-
-/* Contact Cards */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.contact-card {
-    background: var(--gris-clair);
-    padding: 30px;
-    border-radius: 12px;
-    border-left: 4px solid var(--or-elegant);
-}
-
-.contact-card strong {
-    display: block;
-    font-size: 18px;
-    color: var(--bleu-profond);
-    margin-bottom: 12px;
-}
-
-.contact-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 28px;
-    background: var(--bleu-profond);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: all 0.3s;
-}
-
-.contact-button:hover {
-    background: var(--bleu-nuit);
-    transform: translateX(3px);
-}
-
-/* Map */
-.map-container {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    margin-top: 40px;
-}
-
-iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-}
-
-/* Footer */
-footer {
-    background: var(--bleu-nuit);
-    color: #fff;
-    padding: 60px 30px 30px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-section h4 {
-    color: var(--or-elegant);
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-.footer-section p, .footer-section a {
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
-    transition: color 0.3s;
-}
-
-.footer-section a:hover {
-    color: var(--or-elegant);
-}
-
-.footer-bottom {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 28px;
     text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.6);
+}
+
+.logo {
+    margin-bottom: 16px;
+}
+
+.logo svg {
+    height: 28px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+p {
     font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 20px;
 }
 
-/* Responsive */
-@media (max-width: 968px) {
-    .maitre-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .maitre-photo {
-        max-width: 350px;
-        margin: 0 auto;
-    }
-
-    .expertise-list {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    nav .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(15, 24, 33, 0.98);
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
-        display: none;
-    }
-
-    nav .nav-links.active {
-        display: flex;
-    }
-
-    .hero {
-        padding: 140px 20px 80px;
-    }
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero .subtitle {
-        font-size: 20px;
-    }
-
-    h2 {
-        font-size: 32px;
-    }
-
-    .container {
-        padding: 50px 20px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+.footer {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #9ca3af;
 }
 </style>
 </head>
+
 <body>
-
-<nav>
-    <div class="nav-container">
-        <div class="logo">TREMBLAY & BARRIAUL</div>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="#maitre">Le Maître</a>
-            <a href="#competences">Compétences</a>
-            <a href="#etude">L'Étude</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="hero-content">
-        <h1>TREMBLAY & BARRIAUL</h1>
-        <p class="subtitle">Notaire — Officier Public</p>
-        <p>Plus de 20 ans d'expérience au service de vos projets juridiques et patrimoniaux. Expertise, rigueur et accompagnement personnalisé.</p>
-        <a href="#contact" class="cta-button">Prendre rendez-vous</a>
-    </div>
-</section>
-
-<section class="maitre-section" id="maitre">
-    <div class="maitre-content">
-        <div class="maitre-photo">
-            <div class="photo-frame">
-                <!-- Remplacez l'URL ci-dessous par la vraie photo du maître -->
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6013rASkQMmm3-nKEHZ9qnouPgroKRwKe5A&s" alt="Maître Gilles" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="photo-placeholder" style="display: none;">
-                    <span>JD</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="maitre-info">
-            <h2>Maître Gilles Tremblay</h2>
-            <div class="credentials">
-                <span class="badge">Notaire Associé</span>
-                <span class="badge">20+ ans d'expérience</span>
-            </div>
-            
-            <div class="maitre-bio">
-                <h3>Expertise</h3>
- <p>               
-Pratique générale
-Affaires:
-- Arbitrage
-- Associations
-- Baux commerciaux
-- Constitution, fusion et liquidation d'entreprises
-- Démarrage et financement d'entreprises
-- Droit agricole
-- Fiducie
-- Médiation civile et commerciale
-- Procuration
-- Propriété intellectuelle, droit d'auteur, brevets et marques de commerce
-- Vente d'entreprise
-Autres:
-- Agent vérificateur de l'identité pour le RDPRM
-- Recherches juridiques
-Famille et couple:
-- Bilan patrimonial (inventaire de vos biens)
-- Contrat de mariage, d'union civile ou entre conjoints de fait
-- Dissolution d'union civile
-- Homologation de mandat d'inaptitude
-- Projet d'accord en séparation de corps et en divorce
-- Rédaction de mandat d'inaptitude
-- Régime de protection : tutelle et curatelle
-- Requête en correction des actes de l'état civil
-Immobilier:
-- Achat et vente d'immeuble
-- Correction de titres de propriété
-- Expropriation
-- Hypothèques mobilières et immobilières
-- Offre d'achat et avant-contrat
-- Quittances et mainlevées
-- Reconnaissance judiciaire du droit de propriété
-- Servitudes
-- Vente sous contrôle de justice
-Succession et testament:
-- Conférencier
-- Fiducie testamentaire
-- Liquidation de succession
-- Rédaction de testament
-- Requête en jugement déclaratif de décès
-- Vérification de testament
-
-ACCRÉDITATION:
-- Régimes de protection (RLRQ, c. C-25, r. 3) (A05) 1999-05-28
-- Médiateur petites créances (A20) 2003-10-16
-
-LANGUES:
-- Français parlées
-- Français écrites
-- Anglais parlées
-- Anglais écrites
-</p>
-                
-                <h3 style="margin-top: 25px;">Domaines d'Excellence</h3>
-                <div class="expertise-list">
-                    <div class="expertise-item">Transactions immobilières complexes</div>
-                    <div class="expertise-item">Optimisation fiscale</div>
-                    <div class="expertise-item">Successions internationales</div>
-                    <div class="expertise-item">Droit des sociétés</div>
-                    <div class="expertise-item">Stratégies patrimoniales</div>
-                    <div class="expertise-item">Médiation familiale</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <div class="container">
-
-<section class="section" id="competences">
-    <h2>Domaines de Compétence</h2>
-    <p class="section-intro">Une expertise complète pour répondre à tous vos besoins juridiques et patrimoniaux, avec un accompagnement personnalisé à chaque étape.</p>
-
-    <div class="grid">
-        <div class="card">
-            <div class="card-icon">🏡</div>
-            <h3>Droit Immobilier</h3>
-            <p>Ventes et acquisitions, promesses de vente, garanties hypothécaires, baux commerciaux, copropriété et servitudes. Sécurisation juridique complète de vos projets immobiliers.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">👨‍👩‍👧</div>
-            <h3>Droit de la Famille</h3>
-            <p>Contrats de mariage, PACS, conventions de divorce, donations entre époux, donations-partages, protection des personnes vulnérables et adoption.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">💼</div>
-            <h3>Conseil Patrimonial</h3>
-            <p>Stratégies de transmission, optimisation fiscale, création de sociétés civiles, démembrement de propriété, assurance-vie et gestion de patrimoine.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">⚖️</div>
-            <h3>Successions</h3>
-            <p>Règlement de successions simples et complexes, recherche d'héritiers, testaments, liquidations de régimes matrimoniaux et partages successoraux.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🏢</div>
-            <h3>Droit des Sociétés</h3>
-            <p>Créations de sociétés, cessions de parts sociales, augmentations de capital, fusions-acquisitions et liquidations de sociétés.</p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🌍</div>
-            <h3>Affaires Internationales</h3>
-            <p>Transactions transfrontalières, successions internationales, conventions fiscales et accompagnement des expatriés dans leurs démarches.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section" id="etude">
-    <h2>L'Étude Notariale</h2>
-    <p class="section-intro">Un cadre professionnel moderne et chaleureux, doté des technologies les plus récentes pour vous offrir un service d'excellence.</p>
-    
     <div class="card">
-        <p style="margin-bottom: 15px;">Notre équipe de sept collaborateurs qualifiés vous accueille dans un espace entièrement rénové, alliant tradition notariale et modernité.</p>
-        
-        <p style="margin-bottom: 15px;">Nous mettons à votre disposition des outils numériques de pointe : signature électronique certifiée, portail client sécurisé, visioconférences et dématérialisation des documents pour plus de rapidité et de simplicité dans vos démarches.</p>
-        
-        <p>L'étude est membre de plusieurs réseaux professionnels nationaux et internationaux, garantissant une expertise constamment actualisée et un service de qualité supérieure.</p>
-    </div>
-</section>
 
-<section class="section" id="contact">
-    <h2>Informations Pratiques</h2>
-    <p class="section-intro">Nous sommes à votre disposition pour répondre à toutes vos questions et vous accompagner dans vos projets.</p>
-
-    <div class="contact-grid">
-        <div class="contact-card">
-            <strong>📍 Adresse</strong>
-             119B Perron O, <br>
-            New Richmond QC G0C 2B0<br>
-            <br>
+        <div class="logo">
+            <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M41 28H15C7 28 3 23 3 18C3 13 7 9 13 9C15 4 20 1 26 1C34 1 40 7 40 15H41C46 15 50 19 50 23C50 26 47 28 44 28H41Z" fill="#F38020"/>
+                <text x="55" y="26" font-size="18" fill="#111827" font-family="Arial, Helvetica, sans-serif">Cloudflare</text>
+            </svg>
         </div>
 
-        <div class="contact-card">
-            <strong>📞 Contact</strong>
-            Téléphone : 01 23 45 67 89<br>
-            Email : contact@etude-dupont.fr<br>
-            Fax : 01 23 45 67 90
-            <a class="contact-button" href="tel:0123456789">Appeler l'étude</a>
+        <h1>Vérification de sécurité</h1>
+        <p>Veuillez confirmer que vous êtes un humain pour continuer.</p>
+
+        <div class="cf-turnstile"
+             data-sitekey="0x4AAAAAACKRdmSS3Pt_XZj4"
+             data-callback="onSuccess">
         </div>
 
-        <div class="contact-card">
-            <strong>🕐 Horaires</strong>
-            Lundi – Vendredi<br>
-            9h00 – 12h30 | 14h00 – 18h00<br>
-            Samedi sur rendez-vous<br>
-            <em style="font-size: 14px; opacity: 0.8;">Permanence téléphonique</em>
+        <div class="footer">
+            Performance &amp; sécurité par Cloudflare
         </div>
     </div>
-
-    <div class="map-container">
-        <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2661.3625450844897!2d-65.8579646!3d48.1610935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4c99b23ceaf7719f%3A0xdfb51dc56150f5ce!2s119b%2C%20119%20Bd%20Perron%20O%2C%20New%20Richmond%2C%20QC%20G0C%202B0%2C%20Canada!5e0!3m2!1sfr!2sma!4v1767391996390!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen=""
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-</section>
-
 </div>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>TREMBLAY & BARRIAUL</h4>
-            <p>Notaire associé</p>
-            <p>Office notarial inscrit auprès de la Chambre des Notaires de Paris</p>
-            <p>N° CRPCEN : 123456789</p>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Services</h4>
-            <a href="#competences">Droit immobilier</a>
-            <a href="#competences">Droit de la famille</a>
-            <a href="#competences">Conseil patrimonial</a>
-            <a href="#competences">Successions</a>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Informations</h4>
-            <a href="#etude">L'étude</a>
-            <a href="#maitre">Le maître</a>
-            <a href="#">Mentions légales</a>
-            <a href="#">Politique de confidentialité</a>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Horaires</h4>
-            <p>Lundi - Vendredi<br>9h00 - 12h30 | 14h00 - 18h00</p>
-            <p>Samedi sur rendez-vous</p>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>© 2026 Étude notariale Tremblay & Barriaul — Tous droits réservés
-       </p>
-    </div>
-</footer>
-
 <script>
-function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+function onSuccess(token) {
+  fetch("/verify", {
+    method: "POST",
+    body: new URLSearchParams({
+      "cf-turnstile-response": token
+    })
+  }).then(res => {
+    if (res.ok) {
+      window.location.href = "success.html";
+    } else {
+      alert("Échec de la vérification");
+    }
+  });
 }
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            // Fermer le menu mobile si ouvert
-            document.getElementById('navLinks').classList.remove('active');
-        }
-    });
-});
 </script>
-
 </body>
 </html>
